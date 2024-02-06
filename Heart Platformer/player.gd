@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-#video 1 43:43
+#video 2 0:00
 const SPEED = 100.0
 const ACCELERATION = 800
 const FRICTION = 600
