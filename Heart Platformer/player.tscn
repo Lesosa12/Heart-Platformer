@@ -39,9 +39,6 @@ region = Rect2(120, 0, 24, 20)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_2hom7")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_u8amd")
 }],
 "loop": true,
@@ -90,9 +87,12 @@ script = ExtResource("1_5ydgk")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10)
 sprite_frames = SubResource("SpriteFrames_riuja")
-animation = &"Run"
-frame_progress = 0.610994
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8.5)
 shape = SubResource("RectangleShape2D_s33ur")
+
+[node name="CoyoteJumpTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
