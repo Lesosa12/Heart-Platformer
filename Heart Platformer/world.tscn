@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c55hm7h354acp"]
+[gd_scene load_steps=4 format=3 uid="uid://c55hm7h354acp"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_mhpck"]
 [ext_resource type="PackedScene" uid="uid://bomq7ieiqapob" path="res://player.tscn" id="2_5lovr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epu2v"]
+size = Vector2(16, 56)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_mhpck")
@@ -11,9 +14,21 @@ script = ExtResource("1_mhpck")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(48, 24)
 scale = Vector2(1, 1.00481)
-polygon = PackedVector2Array(-48, -23.8852, -16, -23.8852, -16, 103.502, 24, 103.502, 24, 111.464, 0, 111.464, 0, 127.388, 24, 127.388, 48, 127.388, 80, 127.388, 80, 111.464, 48.2257, 111.343, 48.336, 103.502, 80, 103.502, 80, 87.5789, 0, 87.5789, 0, 55.7321, 32, 40, 32, 64, 48, 64, 48, 48, 64, 56, 80, 55.7321, 88, 23.8852, 96, 56, 112, 63.6938, 112, 47.7703, 128, 48, 128, 71.6555, 96, 71.6555, 96, 87.5789, 128, 88, 144, 88, 144, 39.8086, 168, 39.8086, 184, 63.6938, 160, 63.6938, 160, 79.6172, 160, 103.502, 176, 103.502, 176, 111.464, 112, 111.464, 112, 127.388, 192, 127.388, 200, 103.502, 248, 103.502, 248, 87.5789, 232, 87.5789, 248, 79.6172, 248, 79.6172, 240, 63.6938, 200, 87.5789, 176, 87.5789, 176, 79.6172, 200, 79.6172, 200, 63.6938, 248, 47.7703, 248, -23.8852, 272, -23.8852, 272, 151.273, -48, 151.273)
+polygon = PackedVector2Array(-48, -23.8852, -16, -23.8852, -16, 103.502, 24, 103.502, 24, 111.464, 0, 111.464, 0, 127.388, 24, 127.388, 48, 127.388, 80, 127.388, 80, 111.464, 48.2257, 111.343, 48.336, 103.502, 80, 103.502, 80, 87.5789, 0, 87.5789, 0, 55.7319, 32, 55.7319, 32, 64, 48, 64, 48, 48, 64, 56, 80, 55.7321, 88, 23.8852, 96, 56, 112, 63.6938, 112, 47.7703, 128, 48, 128, 71.6555, 96, 71.6555, 96, 87.5789, 128, 88, 144, 88, 144, 39.8086, 168, 39.8086, 184, 63.6938, 160, 63.6938, 160, 79.6172, 160, 103.502, 176, 103.502, 176, 111.464, 112, 111.464, 112, 127.388, 192, 127.388, 200, 103.502, 248, 103.502, 248, 87.5789, 232, 87.5789, 248, 79.6172, 248, 79.6172, 240, 63.6938, 200, 87.5789, 176, 87.5789, 176, 79.6172, 200, 79.6172, 200, 47.7702, 248, 47.7703, 248, -23.8852, 272, -23.8852, 272, 151.273, -48, 151.273)
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D/CollisionPolygon2D"]
 
 [node name="Player" parent="." instance=ExtResource("2_5lovr")]
-position = Vector2(160, 24)
+position = Vector2(72, 56)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(264, 20)
+shape = SubResource("RectangleShape2D_epu2v")
+
+[node name="ColorRect" type="ColorRect" parent="StaticBody2D2"]
+offset_left = 256.0
+offset_top = -8.0
+offset_right = 272.0
+offset_bottom = 50.0

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://player.gd" id="1_5ydgk"]
 [ext_resource type="Texture2D" uid="uid://sgpcffk28p1n" path="res://player.png" id="2_2hom7"]
-[ext_resource type="Resource" uid="uid://d4dunn1mf3vq5" path="res://DefaultMovementData.tres" id="2_uo2fo"]
+[ext_resource type="Resource" uid="uid://phc647wqro4" path="res://FasterMovementData.tres" id="2_tm8a2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u8amd"]
 atlas = ExtResource("2_2hom7")
@@ -84,7 +84,7 @@ size = Vector2(14, 17)
 [node name="Player" type="CharacterBody2D"]
 floor_snap_length = 2.0
 script = ExtResource("1_5ydgk")
-movement_data = ExtResource("2_uo2fo")
+movement_data = ExtResource("2_tm8a2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10)
@@ -98,3 +98,6 @@ shape = SubResource("RectangleShape2D_s33ur")
 [node name="CoyoteJumpTimer" type="Timer" parent="."]
 wait_time = 0.15
 one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(2.08165e-12, -32)
