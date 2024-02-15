@@ -1,9 +1,11 @@
 extends CharacterBody2D
 
-#video 4 16.35
+#video 5 0.0
+
 @export var movement_data : PlayerMovementData
 
 var air_jump = false
+var just_wall_jumped = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
@@ -12,8 +14,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _physics_process(delta):
 	apply_gravity(delta)
-	handle_jump()
 	handle_wall_jump()
+	handle_jump()
 	var input_axis = Input.get_axis("ui_left", "ui_right")
 	
 	handle_acceleration(input_axis, delta)
@@ -26,20 +28,24 @@ func _physics_process(delta):
 	var just_left_ledge = was_on_floor and not is_on_floor() and velocity.y >= 0
 	if just_left_ledge:
 		coyote_jump_timer.start()
+	just_wall_jumped = false
 
 func apply_gravity(delta):
 	if not is_on_floor():
 		velocity.y += gravity * movement_data.gravity_scale * delta
 
 func handle_wall_jump():
-	if not is_on_wall(): return
+	if not is_on_wall_only(): return
 	var wall_normal = get_wall_normal()
-	if Input.is_action_just_pressed("ui_left") and wall_normal == Vector2.LEFT:
+	if Input.is_action_just_pressed("ui_left"):
 		velocity.x = wall_normal.x * movement_data.speed
 		velocity.y = movement_data.jump_velocity
-	if Input.is_action_just_pressed("ui_right") and wall_normal == Vector2.RIGHT:
+		just_wall_jumped = true
+	if Input.is_action_just_pressed("ui_right"):
 		velocity.x = wall_normal.x * movement_data.speed
 		velocity.y = movement_data.jump_velocity
+		just_wall_jumped = true
+
 		
 
 func handle_jump():
@@ -51,7 +57,7 @@ func handle_jump():
 		if Input.is_action_just_released("ui_accept") and velocity.y < movement_data.jump_velocity / 2:
 			velocity.y = movement_data.jump_velocity / 2
 			
-		if Input.is_action_just_pressed("ui_accept") and air_jump:
+		if Input.is_action_just_pressed("ui_accept") and air_jump and not just_wall_jumped:
 			velocity.y = movement_data.jump_velocity * 0.8
 			air_jump = false
 
