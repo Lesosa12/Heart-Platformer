@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://bomq7ieiqapob"]
+[gd_scene load_steps=15 format=3 uid="uid://bomq7ieiqapob"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_5ydgk"]
 [ext_resource type="Texture2D" uid="uid://sgpcffk28p1n" path="res://player.png" id="2_2hom7"]
-[ext_resource type="Resource" uid="uid://phc647wqro4" path="res://FasterMovementData.tres" id="2_tm8a2"]
+[ext_resource type="Resource" uid="uid://d4dunn1mf3vq5" path="res://DefaultMovementData.tres" id="2_2usvu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u8amd"]
 atlas = ExtResource("2_2hom7")
@@ -79,12 +79,17 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s33ur"]
-size = Vector2(14, 17)
+size = Vector2(12, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7k1du"]
+size = Vector2(6, 12)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
 floor_snap_length = 2.0
 script = ExtResource("1_5ydgk")
-movement_data = ExtResource("2_tm8a2")
+movement_data = ExtResource("2_2usvu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10)
@@ -92,7 +97,7 @@ sprite_frames = SubResource("SpriteFrames_riuja")
 animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -8.5)
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_s33ur")
 
 [node name="CoyoteJumpTimer" type="Timer" parent="."]
@@ -101,3 +106,15 @@ one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2.08165e-12, -32)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="HazardDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardDetector"]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_7k1du")
+
+[connection signal="area_entered" from="HazardDetector" to="." method="_on_hazard_detector_area_entered"]
