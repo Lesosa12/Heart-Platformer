@@ -10,6 +10,9 @@
 [node name="LevelOne" instance=ExtResource("1_y0mg7")]
 next_level = ExtResource("2_0hr6o")
 
+[node name="Player" parent="." index="0"]
+position = Vector2(72, 80)
+
 [node name="LevelCompleted" parent="LevelTilemap" index="0" instance=ExtResource("2_36vnx")]
 visible = false
 

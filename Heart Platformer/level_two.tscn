@@ -6,6 +6,9 @@
 
 [node name="LevelTwo" instance=ExtResource("1_ftlk7")]
 
+[node name="Player" parent="." index="0"]
+position = Vector2(72, 64)
+
 [node name="spikes" parent="." index="2" instance=ExtResource("2_bo04m")]
 position = Vector2(112, -48)
 

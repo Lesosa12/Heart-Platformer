@@ -24,7 +24,6 @@ func _physics_process(delta):
 	handle_air_acceleration(input_axis, delta)
 	apply_friction(input_axis, delta)
 	apply_air_resistance(input_axis, delta)
-	update_animations(input_axis)
 	var was_on_floor = is_on_floor()
 	var was_on_wall = is_on_wall_only()
 	if was_on_wall:
@@ -37,6 +36,7 @@ func _physics_process(delta):
 	var just_left_wall = was_on_wall and not is_on_wall()
 	if just_left_ledge:
 		wall_jump_timer.start()
+	update_animations(input_axis)
 
 func apply_gravity(delta):
 	if not is_on_floor():

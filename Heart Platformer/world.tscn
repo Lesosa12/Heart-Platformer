@@ -1,9 +1,46 @@
-[gd_scene load_steps=5 format=3 uid="uid://c55hm7h354acp"]
+[gd_scene load_steps=8 format=3 uid="uid://c55hm7h354acp"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_mhpck"]
 [ext_resource type="PackedScene" uid="uid://bomq7ieiqapob" path="res://player.tscn" id="2_5lovr"]
 [ext_resource type="PackedScene" uid="uid://dfr3gr1gvaimi" path="res://level_completed.tscn" id="5_yqmyb"]
 [ext_resource type="PackedScene" uid="uid://d2hvamgyw5c41" path="res://level_tile_map.tscn" id="6_ko1ok"]
+
+[sub_resource type="Animation" id="Animation_hnnql"]
+resource_name = "countdown"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/StartIn/CenterContainer/StartInLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": ["Start in: 3", "Start in: 2", "Start in: 1"]
+}
+
+[sub_resource type="Animation" id="Animation_q5qdo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/StartIn/CenterContainer/StartInLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Start in: 3"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nb23v"]
+_data = {
+"RESET": SubResource("Animation_q5qdo"),
+"countdown": SubResource("Animation_hnnql")
+}
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_mhpck")
@@ -16,4 +53,34 @@ position = Vector2(72, 56)
 [node name="LevelCompleted" parent="CanvasLayer" instance=ExtResource("5_yqmyb")]
 visible = false
 
+[node name="StartIn" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.282353)
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/StartIn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartInLabel" type="Label" parent="CanvasLayer/StartIn/CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Start in: 3"
+
 [node name="LevelTilemap" parent="." instance=ExtResource("6_ko1ok")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_nb23v")
+}
+autoplay = "countdown"
