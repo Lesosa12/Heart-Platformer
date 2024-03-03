@@ -13,10 +13,13 @@ var start_level_msec = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if not next_level is PackedScene:
+		level_completed.next_level_button.text = "Victory Screen"
+		next_level = load("res://victory_screen.tscn")
 	Events.level_completed.connect(show_level_completed)
 	get_tree().paused = true
 	start_in.visible = true
-	await LevelTransistion.fade_from_black()
+	LevelTransistion.fade_from_black()
 	animation_player.play('countdown')
 	await animation_player.animation_finished
 	get_tree().paused = false
@@ -50,8 +53,8 @@ func show_level_completed():
 
 
 func _on_level_completed_next_level():
-	retry()
+	go_to_next_level()
 
 
 func _on_level_completed_retry():
-	go_to_next_level()
+	retry()
