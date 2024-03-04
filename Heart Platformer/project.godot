@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Events="*res://Events.gd"
-LevelTransistion="*res://level_transistion.tscn"
+LevelTransistion="*res://level_transition.tscn"
 
 [display]
 

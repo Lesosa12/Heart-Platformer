@@ -1,15 +1,15 @@
 [gd_scene load_steps=2 format=3 uid="uid://dfr3gr1gvaimi"]
 
-[ext_resource type="Script" path="res://level_completed.gd" id="1_375t2"]
+[ext_resource type="Script" path="res://room_completed.gd" id="1_20fv5"]
 
-[node name="LevelCompleted" type="ColorRect"]
+[node name="RoomCompleted" type="ColorRect"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.207843)
-script = ExtResource("1_375t2")
+script = ExtResource("1_20fv5")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -36,12 +36,12 @@ custom_minimum_size = Vector2(64, 16)
 layout_mode = 2
 text = "Retry"
 
-[node name="NextLevelButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+[node name="NextRoomButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 process_mode = 3
 custom_minimum_size = Vector2(64, 16)
 layout_mode = 2
-text = "Next Level"
+text = "Next Room"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/NextRoomButton" to="." method="_on_next_room_button_pressed"]

@@ -2,13 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://c55hm7h354acp" path="res://world.tscn" id="1_y0mg7"]
 [ext_resource type="PackedScene" uid="uid://wd3umenxe63h" path="res://level_two.tscn" id="2_0hr6o"]
-[ext_resource type="PackedScene" uid="uid://dfr3gr1gvaimi" path="res://level_completed.tscn" id="2_36vnx"]
+[ext_resource type="PackedScene" uid="uid://dfr3gr1gvaimi" path="res://room_completed.tscn" id="2_36vnx"]
 [ext_resource type="PackedScene" uid="uid://biagxorwrdwmg" path="res://spikes.tscn" id="3_uwp4d"]
 [ext_resource type="PackedScene" uid="uid://bqpw48dy1xcyy" path="res://heart.tscn" id="4_6t24r"]
 [ext_resource type="PackedScene" uid="uid://d2hvamgyw5c41" path="res://level_tile_map.tscn" id="5_vb4sb"]
 
 [node name="LevelOne" instance=ExtResource("1_y0mg7")]
-next_level = ExtResource("2_0hr6o")
+next_room = ExtResource("2_0hr6o")
 
 [node name="Player" parent="." index="0"]
 position = Vector2(72, 80)

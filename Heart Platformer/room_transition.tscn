@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bf8x8mr3y2hkj"]
+
+[ext_resource type="Script" path="res://RoomTransition.gd" id="1_owo1f"]
+
+[node name="RoomTransition" type="Node2D"]
+script = ExtResource("1_owo1f")
