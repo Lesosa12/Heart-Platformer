@@ -1,6 +1,6 @@
 extends Node
 
-signal level_completed
+signal room_completed
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

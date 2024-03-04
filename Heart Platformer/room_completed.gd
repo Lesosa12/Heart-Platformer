@@ -4,7 +4,8 @@ signal retry()
 signal next_room()
 
 @onready var retry_button = %RetryButton
-@onready var next_level_button = %NextRoomButton
+@onready var next_room_button = %NextRoomButton
+
 
 
 func _on_retry_button_pressed():
